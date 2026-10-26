@@ -24,11 +24,11 @@ export default function Logo({ tone = 'dark', onClick }) {
   const text = tone === 'dark' ? 'text-ink' : 'text-ivory'
   const sub = tone === 'dark' ? 'text-ink-muted' : 'text-ivory/70'
   return (
-    <Link to="/" onClick={onClick} className="group flex items-center gap-3" aria-label={t('logo.aria', { name: site.legalName })}>
+    <Link to="/" onClick={onClick} className="group flex shrink-0 items-center gap-3" aria-label={t('logo.aria', { name: site.legalName })}>
       <LogoMark tone={tone} className="h-10 w-10 shrink-0 transition-transform duration-500 group-hover:-translate-y-0.5" />
-      <span className="leading-none">
+      <span className="whitespace-nowrap leading-none">
         <span className={`block font-display text-[1.45rem] tracking-tight ${text}`}>{SITE.name}</span>
-        <span className={`mt-1 block text-[0.62rem] font-semibold uppercase tracking-[0.2em] ${sub}`}>{t('logo.sub')}</span>
+        <span className={`mt-1 block text-[0.62rem] font-semibold uppercase tracking-[0.16em] ${sub}`}>{t('logo.sub')}</span>
       </span>
     </Link>
   )
