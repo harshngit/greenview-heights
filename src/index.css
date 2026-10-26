@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Greenview Heights design tokens
+   Palette: warm ivory ground, deep forest green, charcoal ink, muted gold.
+   ------------------------------------------------------------------ */
+@theme {
+  /* Latin fonts have no Devanagari glyphs, so Hindi and Marathi text falls
+     through to the Noto Devanagari faces while digits and Latin stay as is. */
+  --font-sans: "Manrope", "Noto Sans Devanagari", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Instrument Serif", "Noto Serif Devanagari", "Iowan Old Style", Georgia, serif;
+
+  --color-ivory: #faf8f3;
+  --color-sand: #f2ede3;
+  --color-stone: #e7e1d5;
+  --color-line: #e4ded1;
+
+  --color-ink: #1b1f1c;
+  --color-ink-soft: #4a524c;
+  --color-ink-muted: #737b74;
+
+  --color-forest-50: #eef3ef;
+  --color-forest-100: #dbe7df;
+  --color-forest-200: #b5cdbd;
+  --color-forest-500: #2f6a50;
+  --color-forest-600: #275a44;
+  --color-forest-700: #1f4a37;
+  --color-forest-800: #183a2b;
+  --color-forest-900: #112a1f;
+
+  --color-gold-100: #f4ecdc;
+  --color-gold-300: #dcc79c;
+  --color-gold-500: #b8965a;
+  --color-gold-700: #8a6d3b;
+
+  --shadow-soft: 0 1px 2px rgb(27 31 28 / 0.04), 0 8px 24px -12px rgb(27 31 28 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(27 31 28 / 0.05), 0 22px 40px -20px rgb(27 31 28 / 0.25);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-ivory text-ink font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  ::selection {
+    background: var(--color-forest-100);
+    color: var(--color-forest-900);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-forest-500);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* Reusable component classes (Tailwind v4 @utility so they work with @apply and variants) */
+@utility container-x {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+}
+
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-forest-600;
+  &::before {
+    content: "";
+    @apply h-px w-6 bg-gold-500;
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@utility btn-primary {
+  @apply btn bg-forest-700 text-ivory hover:bg-forest-800;
+}
+
+@utility btn-light {
+  @apply btn bg-ivory text-forest-800 hover:bg-white;
+}
+
+@utility btn-outline {
+  @apply btn border border-forest-700/25 text-forest-800 hover:border-forest-700 hover:bg-forest-50;
+}
+
+@utility btn-ghost-light {
+  @apply btn border border-white/40 text-white hover:bg-white/10;
+}
+
+@utility link-arrow {
+  @apply inline-flex items-center gap-1.5 text-sm font-semibold text-forest-700 underline-offset-4 hover:underline;
+}
+
+@utility card {
+  @apply rounded-2xl border border-line bg-white shadow-soft;
+}
+
+@utility field-label {
+  @apply mb-1.5 block text-sm font-medium text-ink;
+}
+
+@utility field {
+  @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-[0.95rem] text-ink placeholder:text-ink-muted/70 transition-colors focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100;
+}
+
+@utility field-error {
+  @apply border-red-400 focus:border-red-500 focus:ring-red-100;
+}
+
+@utility chip {
+  @apply rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:border-forest-200 hover:text-forest-800;
+}
+
+@utility chip-active {
+  @apply border-forest-700 bg-forest-700 text-ivory hover:border-forest-700 hover:text-ivory;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Hindi and Marathi (Devanagari). Unlayered on purpose so these win
+   over Tailwind utilities.
+   - Letter-spacing breaks the joined headline (shirorekha) of the script.
+   - Vowel signs sit above and below the letters, so tight display
+     line-heights would clip them.
+   - Devanagari has no italic; slanting it synthetically looks broken,
+     so accent words keep their colour but stay upright.
+   ------------------------------------------------------------------ */
+:lang(hi),
+:lang(mr) {
+  letter-spacing: normal !important;
+}
+:is(:lang(hi), :lang(mr)) :is(h1, h2, h3, .font-display) {
+  line-height: 1.3;
+}
+:is(:lang(hi), :lang(mr)) :is(em, .italic) {
+  font-style: normal;
+}
+:is(:lang(hi), :lang(mr)) #hero-title {
+  font-size: clamp(2.6rem, 7vw, 5.25rem);
+}

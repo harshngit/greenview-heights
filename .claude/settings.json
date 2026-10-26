@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem src -Recurse -File | ForEach-Object { \"{0}`t{1}\" -f $_.FullName.Replace\\(\\(Get-Location\\).Path+'\\\\',''\\), \\(Get-Content $_.FullName | Measure-Object -Line\\).Lines })",
+      "Bash(sed -i \"s/resources: 'निवासियों के लिए जानकारी',/resources: 'निवासी जानकारी',/; s/eyebrow: 'निवासियों के लिए जानकारी',/eyebrow: 'निवासी जानकारी',/\" hi.js)",
+      "Bash(sed -i \"s/resources: 'रहिवाशांसाठी माहिती',/resources: 'रहिवासी माहिती',/; s/eyebrow: 'रहिवाशांसाठी माहिती',/eyebrow: 'रहिवासी माहिती',/\" mr.js)",
+      "PowerShell(npx vite build 2>&1)",
+      "PowerShell(node \"C:\\\\Users\\\\Lenovo\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--Projects-greenview-heights\\\\ca88d3b7-d7dc-4f62-9df6-1c92af986bb3\\\\scratchpad\\\\keys.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\Lenovo\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--Projects-greenview-heights\\\\ca88d3b7-d7dc-4f62-9df6-1c92af986bb3\\\\scratchpad\\\\data.mjs\")",
+      "Bash(sed -i \"s/    skip: 'Skip to content',/    skip: 'Skip to content',\\\\n    mainNav: 'Main',\\\\n    breadcrumb: 'Breadcrumb',/\" i18n/en.js)",
+      "Bash(sed -i \"s/    skip: 'मुख्य सामग्री पर जाएँ',/    skip: 'मुख्य सामग्री पर जाएँ',\\\\n    mainNav: 'मुख्य मेनू',\\\\n    breadcrumb: 'आप यहाँ हैं',/\" i18n/hi.js)",
+      "Bash(sed -i \"s/    skip: 'मुख्य मजकुराकडे जा',/    skip: 'मुख्य मजकुराकडे जा',\\\\n    mainNav: 'मुख्य मेनू',\\\\n    breadcrumb: 'आपण येथे आहात',/\" i18n/mr.js)",
+      "Bash(sed -i 's/aria-label=\"Main\">/aria-label={t\\('\"'\"'common.mainNav'\"'\"'\\)}>/' components/Navbar.jsx)",
+      "Bash(sed -i 's/<nav aria-label=\"Breadcrumb\"/<nav aria-label={t\\('\"'\"'common.breadcrumb'\"'\"'\\)}/' components/PageHeader.jsx)"
+    ]
+  }
+}
